@@ -1061,6 +1061,17 @@ export function issueService(db: Db) {
           await syncIssueLabels(updated.id, existing.companyId, nextLabelIds, tx);
         }
         const [enriched] = await withIssueLabels(tx, [updated]);
+
+        // --- HARNESS SYNC WEBHOOK DISPATCHER ---
+        if (process.env.HARNESS_WEBHOOK_URL) {
+          fetch(process.env.HARNESS_WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ event: "issue.updated", issue: enriched })
+          }).catch(err => console.error("[Webhook Error]", err));
+        }
+        // ---------------------------------------
+
         return enriched;
       });
     },
