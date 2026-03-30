@@ -51,7 +51,8 @@ ENV NODE_ENV=production \
   PAPERCLIP_CONFIG=/paperclip/instances/default/config.json \
   PAPERCLIP_DEPLOYMENT_MODE=authenticated \
   PAPERCLIP_DEPLOYMENT_EXPOSURE=private \
-  PAPERCLIP_PUBLIC_URL=https://paperclip-production-e524.up.railway.app
+  PAPERCLIP_PUBLIC_URL=https://paperclip-production-e524.up.railway.app \
+  BETTER_AUTH_SECRET=harness_clip_production_secret_key
 
 EXPOSE 3100
 
