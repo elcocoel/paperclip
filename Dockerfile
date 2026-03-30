@@ -57,4 +57,4 @@ ENV NODE_ENV=production \
 EXPOSE 3100
 
 USER node
-CMD ["sh", "-c", "node cli/node_modules/tsx/dist/cli.mjs cli/src/index.ts auth bootstrap-ceo --baseUrl https://paperclip-production-e524.up.railway.app && node --import ./server/node_modules/tsx/dist/loader.mjs server/dist/index.js"]
+CMD ["node", "--import", "./server/node_modules/tsx/dist/loader.mjs", "server/dist/index.js"]
